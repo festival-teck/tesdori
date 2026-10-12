@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JSTQB Foundation Level（FL） 模擬試験セットBの問題と解説｜テスドリ</title>
+<meta name="description" content="JSTQB Foundation Level（FL）の模擬試験セットBの全問題と、正解・解説の一覧です。">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="テスドリ">
+<meta property="og:title" content="JSTQB Foundation Level（FL） 模擬試験セットBの問題と解説｜テスドリ">
+<meta property="og:description" content="JSTQB Foundation Level（FL）の模擬試験セットBの全問題と、正解・解説の一覧です。">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#2f6fde">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://tesdori.labfond.com/explain-fl-B.html">
+<meta property="og:url" content="https://tesdori.labfond.com/explain-fl-B.html">
+<script>try{var t=localStorage.getItem("jstqb-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+<style>
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --text:#1d2330; --muted:#5f6b7a; --line:#e2e6ec;
+  --accent:#2563d0; --accent-weak:#e8f0fd; --ok:#1a7a43; --ok-weak:#e6f5ec; --on-accent:#ffffff; --tab-fg:#525d6b;
+  --ng:#c8372d; --ng-weak:#fbeceb; --code:#f1f3f6;
+}
+/* ダークモード：右上のボタンで選んだもの（data-theme）を優先し、選んでいなければ端末の設定に合わせる */
+:root{color-scheme:light}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#12151b; --card:#1b1f27; --text:#e6e9ef; --muted:#9aa4b2; --line:#2c323d;
+  --accent:#6ea0ff; --accent-weak:#1f2a40; --ok:#4cc27d; --ok-weak:#16291f;
+  --ng:#ff7a6e; --ng-weak:#34201e; --code:#242a34; --on-accent:#0b1220; --tab-fg:#9aa4b2;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#12151b; --card:#1b1f27; --text:#e6e9ef; --muted:#9aa4b2; --line:#2c323d;
+    --accent:#6ea0ff; --accent-weak:#1f2a40; --ok:#4cc27d; --ok-weak:#16291f;
+    --ng:#ff7a6e; --ng-weak:#34201e; --code:#242a34; --on-accent:#0b1220; --tab-fg:#9aa4b2;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);
+  font-family:system-ui,-apple-system,"Hiragino Sans","Noto Sans JP","Yu Gothic UI",sans-serif;
+  line-height:1.75;font-size:16px;-webkit-text-size-adjust:100%}
+.wrap{max-width:760px;margin:0 auto;padding:16px}
+header{margin:4px 0 12px}
+header h1,header .sitename{font-size:1.15rem;margin:0;cursor:pointer;font-weight:700}
+.pagetitle{font-size:1.15rem;margin:0 0 4px}
+a{color:var(--accent)}
+header a.sitename{color:inherit;text-decoration:none;display:block}
+.gl-item h2.gl-term{display:inline;margin:0}
+@media (hover:none){.kbd-hint{display:none}}
+header .sub{font-size:.8rem;color:var(--muted)}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;background:var(--line);padding:4px;border-radius:12px;margin-bottom:12px}
+.tab{border:0;background:transparent;color:var(--tab-fg);border-radius:9px;padding:9px 4px;font-weight:600;font-size:.92rem}
+.tab.on{background:var(--card);color:var(--text);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:12px}
+.muted{color:var(--muted)}
+.small{font-size:.85rem}
+h2{font-size:1.05rem;margin:0 0 8px}
+button{font:inherit;cursor:pointer}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:10px;padding:10px 14px}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn:disabled{opacity:.45;cursor:default}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.opts-line{display:flex;gap:16px;flex-wrap:wrap;font-size:.85rem;color:var(--muted);margin:0 0 10px}
+.chapter{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;text-align:left;
+  border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:12px;padding:14px;margin-bottom:8px}
+.chapter .t{font-weight:600}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-top:6px}
+.bar>span{display:block;height:100%;background:var(--ok)}
+.tag{display:inline-block;font-size:.75rem;border-radius:6px;padding:1px 8px;margin-right:6px;border:1px solid var(--line);color:var(--muted)}
+.qtext{margin:8px 0 12px}
+.qtext ul{margin:6px 0;padding-left:1.4em}
+pre{background:var(--code);border-radius:8px;padding:10px 12px;overflow-x:auto;font-size:.88rem;line-height:1.5}
+code{background:var(--code);border-radius:4px;padding:0 4px;font-size:.9em}
+table.dt{border-collapse:collapse;margin:8px 0;font-size:.88rem;display:block;overflow-x:auto;max-width:100%}
+table.dt th,table.dt td{border:1px solid var(--line);padding:4px 8px;text-align:center;white-space:nowrap}
+table.dt th{background:var(--code);font-weight:600}
+table.dt tr > :first-child{white-space:normal;text-align:left;min-width:6.5em}
+.opt{display:block;width:100%;text-align:left;border:1px solid var(--line);background:var(--card);color:var(--text);
+  border-radius:10px;padding:12px 14px;margin-bottom:8px}
+.opt .k{display:inline-block;width:1.6em;font-weight:700;color:var(--muted)}
+.opt.sel{border-color:var(--accent);background:var(--accent-weak)}
+.opt.ok{border-color:var(--ok);background:var(--ok-weak)}
+.opt.ng{border-color:var(--ng);background:var(--ng-weak)}
+input[type=text],textarea{width:100%;font:inherit;color:var(--text);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+textarea{min-height:140px;resize:vertical}
+.calcrow{display:flex;gap:8px;align-items:center}
+.calcrow input{max-width:180px}
+.fb{border-radius:10px;padding:12px 14px;margin-top:12px}
+.fb.ok{background:var(--ok-weak);border:1px solid var(--ok)}
+.fb.ng{background:var(--ng-weak);border:1px solid var(--ng)}
+.fb.neutral{background:var(--accent-weak);border:1px solid var(--accent)}
+.fb .h{font-weight:700;margin-bottom:4px}
+.points label{display:flex;gap:8px;align-items:flex-start;margin:6px 0}
+.points input{margin-top:.45em}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
+/* 模擬試験中は残り時間を常に見えるように上部に固定 */
+#view-mock .topbar{position:sticky;top:0;z-index:5;background:var(--bg);padding:8px 0;margin-top:-8px;border-bottom:1px solid var(--line)}
+.pbar{height:5px;background:var(--line);border-radius:3px;margin-top:6px;overflow:hidden}
+.pbar i{display:block;height:100%;background:var(--accent)}
+.prog{font-size:.78rem;color:var(--muted)}
+.wrongs details{border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin-top:8px;background:var(--card)}
+.wrongs summary{cursor:pointer;font-size:.9rem}
+.wrongs .olist{margin:8px 0 0}
+.wrongs .olist li.right{font-weight:700;color:var(--ok)}
+.progress{font-size:.85rem;color:var(--muted)}
+.timer{font-variant-numeric:tabular-nums;font-weight:700}
+.timer.low{color:var(--ng)}
+.grid{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;margin-top:12px}
+.grid button{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:6px;padding:4px 0;font-size:.78rem}
+.grid button.done{background:var(--accent-weak);border-color:var(--accent)}
+.grid button.cur{outline:2px solid var(--accent)}
+.grid button.ok{background:var(--ok-weak);border-color:var(--ok)}
+.grid button.ng{background:var(--ng-weak);border-color:var(--ng)}
+.grid button{position:relative}
+.grid button.flag::after{content:"";position:absolute;top:2px;right:2px;width:7px;height:7px;border-radius:50%;background:var(--warn,#e0a100)}
+.flagbtn{margin-top:10px}
+.flagbtn.on{border-color:#e0a100;background:rgba(224,161,0,.14)}
+.resume{border:1px solid var(--accent);background:var(--accent-weak)}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:.78rem;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;vertical-align:-1px;border:1px solid var(--line)}
+.kbd-hint{font-size:.75rem;color:var(--muted);margin-top:8px}
+.dist{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:8px}
+.dist th,.dist td{border-bottom:1px solid var(--line);padding:6px 4px;text-align:left}
+.dist td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.big{font-size:1.6rem;font-weight:700}
+.pass{color:var(--ok)} .fail{color:var(--ng)}
+.review{border-top:1px solid var(--line);padding-top:12px;margin-top:12px}
+.notice{background:var(--accent-weak);border:1px solid var(--accent);border-radius:10px;padding:10px 12px;font-size:.85rem;margin-bottom:10px}
+.setgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px}
+.setbtn{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:10px;padding:8px 2px;text-align:center;line-height:1.3}
+.setbtn .nm{font-weight:700;font-size:.9rem}
+.setbtn .st{font-size:.7rem;color:var(--muted)}
+.setbtn .st.pass{color:var(--ok)} .setbtn .st.fail{color:var(--ng)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.opt:focus-visible,.btn:focus-visible,.setbtn:focus-visible,.chapter:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.skip{position:absolute;left:-9999px;top:0}
+.skip:focus{left:8px;top:8px;background:var(--card);color:var(--text);padding:6px 10px;border-radius:6px;z-index:20}
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;padding:16px;z-index:10;overflow-y:auto}
+.modal{background:var(--card);color:var(--text);border-radius:14px;padding:20px;width:100%;max-width:420px;box-shadow:0 10px 30px rgba(0,0,0,.25);
+  max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);overflow-y:auto;margin:auto}
+.modal .nums{max-height:30vh;overflow-y:auto}
+.badge{display:inline-block;font-size:.72rem;font-weight:700;border-radius:4px;padding:0 6px;margin-left:8px;vertical-align:1px}
+.badge.ok{background:var(--ok);color:var(--on-accent)}
+.badge.ng{background:var(--ng);color:var(--on-accent)}
+.qid{font-size:.72rem;color:var(--muted);margin-left:2px}
+.report{font-size:.8rem;display:inline-block;margin-top:8px}
+.reportbox{background:var(--accent-weak);border:1px solid var(--accent);border-radius:10px;padding:10px 14px;margin:12px 0}
+.reportbox pre{white-space:pre-wrap;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin:8px 0;font:inherit;font-size:.88rem}
+.calc-msg{color:var(--ng);font-size:.85rem;margin-top:6px}
+.clog dt{font-weight:700;margin-top:14px}
+.clog dd{margin:4px 0 0 0}
+.clog ul{margin:0;padding-left:1.2em}
+.fupd{margin:10px 0 0;text-align:center;font-size:.72rem}
+.modal .msg{white-space:pre-line;font-weight:600;margin-bottom:8px}
+.modal .nums{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 4px}
+.modal .nums button{border:1px solid var(--ng);background:var(--ng-weak);color:var(--text);border-radius:6px;padding:4px 10px;font-size:.9rem}
+.modal .acts{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}
+footer{font-size:.75rem;color:var(--muted);margin:32px 0 8px;line-height:1.6;border-top:1px solid var(--line);padding-top:16px}
+.hidden{display:none}
+.headrow{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.theme-btn{flex:none;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--card);color:var(--text);
+  border-radius:999px;padding:6px 12px;font:inherit;font-size:.8rem;cursor:pointer;line-height:1.2}
+.theme-btn:hover{border-color:var(--accent)}
+.theme-btn svg{width:16px;height:16px}
+.theme-btn .ic-sun{display:none}
+:root[data-theme="dark"] .theme-btn .ic-sun{display:block}
+:root[data-theme="dark"] .theme-btn .ic-moon{display:none}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .theme-btn .ic-sun{display:block}
+  :root:not([data-theme="light"]) .theme-btn .ic-moon{display:none}
+}
+.fnav{display:flex;flex-wrap:wrap;gap:6px 0;margin:0 0 14px;font-size:.85rem}
+.fnav a{color:var(--text);text-decoration:none;padding:0 12px;border-left:1px solid var(--line);line-height:1.2}
+.fnav a:first-child{padding-left:0;border-left:0}
+.fnav a:hover{color:var(--accent);text-decoration:underline}
+.fnote{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+.fnote-h{font-weight:700;color:var(--text);font-size:.78rem;margin-bottom:4px}
+.fnote p{margin:0 0 4px}
+.fnote p:last-child{margin-bottom:0}
+.fcopy{margin:4px 0 0;text-align:center;font-size:.72rem}
+@media (max-width:520px){.fnav{display:grid;grid-template-columns:1fr 1fr;gap:10px 12px}.fnav a{border-left:0;padding:0}}
+.faq dt{font-weight:700;margin-top:16px}
+.faq dt::before{content:"Q. ";color:var(--accent)}
+.faq dd{margin:4px 0 0 0}
+.faq dd::before{content:"A. ";font-weight:700;color:var(--muted)}
+.bigbtn{display:inline-block;text-decoration:none;margin:8px 0}
+.linkbtn{border:0;background:none;color:var(--accent);padding:4px 0;font-size:.85rem;white-space:nowrap}
+.exam .t{font-size:1.05rem}
+.gnav{display:grid;grid-template-columns:repeat(4,1fr);background:#3d4450;border-radius:10px;overflow:hidden;margin:0 0 14px}
+.gnav a{color:#fff;text-decoration:none;text-align:center;padding:10px 2px;font-size:.88rem;font-weight:600;border-right:1px solid rgba(255,255,255,.15)}
+.gnav a:last-child{border-right:0}
+.gnav a.on{background:#2f6fde}
+.intro{display:flex;gap:10px;align-items:flex-start;background:var(--ok-weak);border:2px solid var(--ok);border-radius:12px;padding:12px 14px;margin-bottom:14px;font-size:.9rem}
+.intro .ic{font-size:1.6rem;line-height:1}
+.prose h2{margin-top:18px}
+.prose p,.prose li{font-size:.95rem}
+.prose table{border-collapse:collapse;width:100%;font-size:.88rem;margin:8px 0}
+.prose th,.prose td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+.prose th{background:var(--code)}
+.prose a,.gl a{color:var(--accent)}
+details.ans{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+details.ans summary{cursor:pointer;color:var(--accent);font-weight:600}
+.olist{margin:6px 0 0;padding-left:0;list-style:none}
+.olist li{padding:6px 10px;border:1px solid var(--line);border-radius:8px;margin-bottom:6px}
+.olist li.right{border-color:var(--ok);background:var(--ok-weak)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 10px}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:999px;padding:6px 12px;font-size:.82rem}
+.chip.on{background:var(--accent-weak);border-color:var(--accent);color:var(--accent);font-weight:600}
+.gl-search{width:100%;font:inherit;color:var(--text);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:10px}
+.gl-item{border-bottom:1px solid var(--line);padding:12px 2px}
+.gl-item:last-child{border-bottom:0}
+.gl-term{font-weight:700;font-size:1.02rem}
+.gl-en{color:var(--muted);font-size:.8rem;margin-left:6px}
+.gl-note{background:var(--accent-weak);border-left:3px solid var(--accent);padding:6px 10px;margin-top:6px;font-size:.88rem;border-radius:0 6px 6px 0}
+.gl-meta{font-size:.78rem;color:var(--muted);margin-top:4px}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">本文へスキップ</a>
+<div class="wrap">
+  <header class="headrow">
+    <div>
+      <div><a class="sitename" id="home-link" href="index.html">テスドリ</a></div>
+      <div class="sub" id="sub">非公式オリジナル問題</div>
+    </div>
+    <button class="theme-btn" id="theme-btn" type="button" aria-label="表示モードを切り替える">
+      <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <span id="theme-label">ダーク</span>
+    </button>
+  </header>
+  <nav class="gnav" id="gnav" aria-label="メインメニュー">
+    <a href="index.html" data-nav="practice">問題演習</a>
+    <a href="explain.html" data-nav="explain" class="on" aria-current="page">問題解説</a>
+    <a href="about.html" data-nav="about">JSTQBとは</a>
+    <a href="glossary.html" data-nav="glossary">用語集</a>
+  </nav>
+
+  <main id="main">
+
+
+
+  <!-- 問題解説：セットごとの問題と解答・解説 -->
+  <section id="view-explain-set">
+    <div class="topbar"><a class="linkbtn" href="explain.html">← 問題解説の一覧へ</a>
+      <button class="btn small" id="ex-toggle">すべての解答・解説を開く</button></div>
+    <div id="explain-set"><div class="card"><h1 class="pagetitle">Foundation Level（FL）模擬試験 セットBの問題と解説</h1><div class="small muted">全40問。問題の後の「解答と解説」を開くと、正解と解説が表示されます。</div></div><div class="card" id="q1"><div><span class="tag">問1</span><span class="tag">第1章 テストの基礎</span><span class="tag">シラバス 1.1</span><span class="qid">ID 1-12</span></div><div class="qtext">ソフトウェアを実行せずに行う静的テストに含まれるものの組み合わせはどれか。</div><ol class="olist"><li data-right="0"><b>A</b>　静的解析とリグレッションテスト</li><li data-right="0"><b>B</b>　コンポーネントテストと静的解析</li><li data-right="1"><b>C</b>　レビューと静的解析</li><li data-right="0"><b>D</b>　レビューと探索的テスト</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：C</b>　レビューと静的解析</div><div class="small" style="margin-top:6px">テストには動的テスト（ソフトウェアの実行を伴う）と静的テスト（実行を伴わない）がある。静的テストにはレビューと静的解析が含まれる。</div><div><a class="report" href="contact.html?q=fl%3A1-12&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F1" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q2"><div><span class="tag">問2</span><span class="tag">第1章 テストの基礎</span><span class="tag">シラバス 1.1.2</span><span class="qid">ID 1-15</span></div><div class="qtext">欠陥の修正後に行う確認テストについて、シラバスが望ましいとしているものはどれか。</div><ol class="olist"><li data-right="1"><b>A</b>　最初のテストを行った人と同じ人が行う</li><li data-right="0"><b>B</b>　修正を行った開発担当者が行う</li><li data-right="0"><b>C</b>　組織外のテスト担当者が必ず行う</li><li data-right="0"><b>D</b>　確認テストは行わず、リグレッションテストだけを行う</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：A</b>　最初のテストを行った人と同じ人が行う</div><div class="small" style="margin-top:6px">確認テストは、最初のテストを行った人と同じ人が行うのがよいとされている。続けて、修正によって他の部分に故障が起きていないかを確認するリグレッションテストを行うこともできる。</div><div><a class="report" href="contact.html?q=fl%3A1-15&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F2" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q3"><div><span class="tag">問3</span><span class="tag">第1章 テストの基礎</span><span class="tag">シラバス 1.2.3</span><span class="qid">ID 1-17</span></div><div class="qtext">故障の原因について、正しい記述はどれか。</div><ol class="olist"><li data-right="0"><b>A</b>　欠陥はコードにだけ存在し、要件仕様書やテストスクリプトの誤りは欠陥ではなくエラーと呼ぶ</li><li data-right="1"><b>B</b>　故障はエラーや欠陥だけでなく、放射線や電磁場などの環境条件によって起きることもある</li><li data-right="0"><b>C</b>　故障はすべて人間のエラーで作り込まれた欠陥が原因であり、環境条件は故障の原因に含まれない</li><li data-right="0"><b>D</b>　欠陥を含むコードが実行されると故障が発生するので、欠陥の数と故障の数は常に一致する</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：B</b>　故障はエラーや欠陥だけでなく、放射線や電磁場などの環境条件によって起きることもある</div><div class="small" style="margin-top:6px">故障の原因はエラーや欠陥だけではなく、環境条件もありうる。欠陥の中には、実行すれば必ず故障になるもの、特定の状況でしか故障にならないもの、絶対に故障にならないものがある。欠陥は要件仕様書やテストスクリプトなどのドキュメントにも存在する。</div><div><a class="report" href="contact.html?q=fl%3A1-17&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F3" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q4"><div><span class="tag">問4</span><span class="tag">第1章 テストの基礎</span><span class="tag">シラバス 1.3</span><span class="qid">ID 1-19</span></div><div class="qtext">「見つかる欠陥や運用時の故障の大部分は、少数のシステムコンポーネントに集中する」という原則について、正しい記述はどれか。</div><ol class="olist"><li data-right="0"><b>A</b>　この原則は、欠陥の多いコンポーネントを全数テストすれば欠陥がないことを証明できることを示す</li><li data-right="1"><b>B</b>　予測した、または観察した欠陥の偏在は、リスクベースドテストの重要なインプットになる</li><li data-right="0"><b>C</b>　この原則は「テストの弱化」と呼ばれ、同じテストを繰り返すと欠陥を見つけにくくなることを示す</li><li data-right="0"><b>D</b>　欠陥の偏在が観察されたら、欠陥の少ないコンポーネントはリグレッションテストの対象から外してよい</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：B</b>　予測した、または観察した欠陥の偏在は、リスクベースドテストの重要なインプットになる</div><div class="small" style="margin-top:6px">これは「欠陥の偏在」の原則で、パレートの法則を示している。予測した偏在や、テスト中・運用中に観察した偏在は、リスクベースドテストの重要なインプットになる。</div><div><a class="report" href="contact.html?q=fl%3A1-19&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F4" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q5"><div><span class="tag">問5</span><span class="tag">第1章 テストの基礎</span><span class="tag">シラバス 1.4.1</span><span class="qid">ID 1-26</span></div><div class="qtext">「テスト実行」の活動に含まれるものはどれか。</div><ol class="olist"><li data-right="1"><b>A</b>　実際の結果を期待結果と比較して記録し、不正を分析して原因を識別する</li><li data-right="0"><b>B</b>　未解決の欠陥の変更要求を作成し、テストの教訓と改善点を識別する</li><li data-right="0"><b>C</b>　テストベースを分析してテスト条件を定義し、それらに優先順位を付ける</li><li data-right="0"><b>D</b>　テストデータ要件を定義し、テスト環境を設計してインフラやツールを識別する</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：A</b>　実際の結果を期待結果と比較して記録し、不正を分析して原因を識別する</div><div class="small" style="margin-top:6px">テスト実行では、スケジュールに従ってテストを走らせ、実際の結果を期待結果と比較し、結果を記録し、不正を分析して原因を識別し、故障に基づいて不正を報告する。継続的テストやペアテストセッションなどの形式もある。選択肢Cはテスト分析、選択肢Dはテスト設計、選択肢Bはテスト完了。</div><div><a class="report" href="contact.html?q=fl%3A1-26&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F5" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q6"><div><span class="tag">問6</span><span class="tag">第1章 テストの基礎</span><span class="tag">シラバス 1.4.2</span><span class="qid">ID 1-21</span></div><div class="qtext">テストプロセスに影響するコンテキストの要因のうち、「テスト対象の重要性、識別したリスク、市場ニーズ、特定の法的規制」が例として挙げられているものはどれか。</div><ol class="olist"><li data-right="0"><b>A</b>　プロジェクトの制約</li><li data-right="0"><b>B</b>　組織的要因</li><li data-right="0"><b>C</b>　ステークホルダー</li><li data-right="1"><b>D</b>　ビジネスドメイン</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：D</b>　ビジネスドメイン</div><div class="small" style="margin-top:6px">これらはビジネスドメインの例。ほかの要因には、ステークホルダー、チームメンバー、技術的要因（ソフトウェアの種類、アーキテクチャーなど）、プロジェクトの制約、組織的要因（組織構造、ポリシーなど）、SDLC、ツールがある。</div><div><a class="report" href="contact.html?q=fl%3A1-21&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F6" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q7"><div><span class="tag">問7</span><span class="tag">第1章 テストの基礎</span><span class="tag">シラバス 1.4.4</span><span class="qid">ID 1-10</span></div><div class="qtext">テストベースとテストウェアの間のトレーサビリティのうち、「テスト結果とリスク」のトレーサビリティを維持することで主にできるようになることはどれか。</div><ol class="olist"><li data-right="1"><b>A</b>　テスト対象に残っているリスクのレベルを評価する</li><li data-right="0"><b>B</b>　テスト環境の構成を自動的に復元する</li><li data-right="0"><b>C</b>　要件がテストケースでカバーされていることを検証する</li><li data-right="0"><b>D</b>　テスト担当者ごとの作業効率を比較する</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：A</b>　テスト対象に残っているリスクのレベルを評価する</div><div class="small" style="margin-top:6px">テスト結果とリスクのトレーサビリティは、テスト対象の残存リスクのレベルの評価に使える。テストケースと要件のトレーサビリティは、要件がテストケースでカバーされているかの検証に使う。トレーサビリティはほかに、変更の影響の判断、テストの監査、ITガバナンス基準への対応、レポートのわかりやすさにも役立つ。</div><div><a class="report" href="contact.html?q=fl%3A1-10&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F7" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q8"><div><span class="tag">問8</span><span class="tag">第1章 テストの基礎</span><span class="tag">シラバス 1.5.1</span><span class="qid">ID 1-34</span></div><div class="qtext">テスト担当者に求められる汎用的スキルのうち、「ドメイン知識」が役立つ理由としてシラバスが挙げているものはどれか。</div><ol class="olist"><li data-right="0"><b>A</b>　テスト技法を活用し、テストの有効性を高められるようにするため</li><li data-right="0"><b>B</b>　発見しにくい欠陥を識別できるよう、細部まで徹底して確認するため</li><li data-right="1"><b>C</b>　エンドユーザーやビジネス側の代表者を理解し、コミュニケーションするため</li><li data-right="0"><b>D</b>　適切なテストツールを使いこなし、テストの効率性を高められるようにするため</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：C</b>　エンドユーザーやビジネス側の代表者を理解し、コミュニケーションするため</div><div class="small" style="margin-top:6px">ドメイン知識はエンドユーザーやビジネス側の代表者の理解とコミュニケーションのため。選択肢Dは技術的な知識、選択肢Aはテスト知識、選択肢Bは徹底さ・慎重さ・好奇心・細部へのこだわりなどが役立つ理由。</div><div><a class="report" href="contact.html?q=fl%3A1-34&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F8" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q9"><div><span class="tag">問9</span><span class="tag">第2章 ソフトウェア開発ライフサイクル全体を通してのテスト</span><span class="tag">シラバス 2.1.1</span><span class="qid">ID 2-09</span></div><div class="qtext">アジャイルソフトウェア開発におけるテストの傾向として、最も適切なものはどれか。</div><ol class="olist"><li data-right="0"><b>A</b>　変更が少ないことを前提に、詳細なテストドキュメントを事前にすべて作成しておく</li><li data-right="0"><b>B</b>　動的テストはイテレーションごとには行わず、リリース前の最終段階でまとめて実施する</li><li data-right="1"><b>C</b>　文書化を軽量化し、リグレッションテストを容易にするためテスト自動化を充実させる</li><li data-right="0"><b>D</b>　手動テストでは、事前に大規模なテスト分析と設計を必要とする技法を中心に使う</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：C</b>　文書化を軽量化し、リグレッションテストを容易にするためテスト自動化を充実させる</div><div class="small" style="margin-top:6px">アジャイルではプロジェクトを通じて変更が生じることを想定しているため、文書化を軽量化し、リグレッションテストを容易にするテスト自動化を充実させる。手動テストは、事前の大規模なテスト分析や設計を必要としない経験ベースの技法で行われる傾向がある。</div><div><a class="report" href="contact.html?q=fl%3A2-09&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F9" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q10"><div><span class="tag">問10</span><span class="tag">第2章 ソフトウェア開発ライフサイクル全体を通してのテスト</span><span class="tag">シラバス 2.1.3</span><span class="qid">ID 2-01</span></div><div class="qtext">振る舞い駆動開発（BDD）の特徴として、最も適切なものはどれか。</div><ol class="olist"><li data-right="0"><b>A</b>　ステークホルダーと合意した仕様をもとに、コードの完成後に自然言語でテストケースを作成する</li><li data-right="0"><b>B</b>　テストを最初に書き、そのテストを満たすコードを書いてから、テストとコードをリファクタリングする</li><li data-right="1"><b>C</b>　望ましい振る舞いを、Given/When/Then 形式などの理解しやすい自然言語のテストケースで表現する</li><li data-right="0"><b>D</b>　システム設計プロセスの一環として、受け入れ基準からテストを導き出し、実装前に作成する</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：C</b>　望ましい振る舞いを、Given/When/Then 形式などの理解しやすい自然言語のテストケースで表現する</div><div class="small" style="margin-top:6px">BDDは、振る舞いを Given/When/Then のような簡潔な自然言語で書き、そのテストケースを実行可能なテストへ自動的に変換する。選択肢BはTDD、選択肢DはATDDの特徴。選択肢Aは「コードの完成後に」作成する点が誤りで、TDD・ATDD・BDDはいずれもコードより先にテストを定義するテストファーストのアプローチ。</div><div><a class="report" href="contact.html?q=fl%3A2-01&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F10" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q11"><div><span class="tag">問11</span><span class="tag">第2章 ソフトウェア開発ライフサイクル全体を通してのテスト</span><span class="tag">シラバス 2.1.5</span><span class="qid">ID 2-26</span></div><div class="qtext">シフトレフトアプローチのコストについて、シラバスの記述に合っているものはどれか。</div><ol class="olist"><li data-right="0"><b>A</b>　初期の労力やコストが削減される代わりに、後期には追加の労力やコストがかかる</li><li data-right="1"><b>B</b>　初期に追加の労力やコストがかかることがあるが、後期の労力やコストの削減が期待される</li><li data-right="0"><b>C</b>　初期の追加コストは、ステークホルダーの合意がなくてもテストチームの判断で負担できる</li><li data-right="0"><b>D</b>　初期にも後期にも追加のコストはかからず、全体の労力やコストがすぐに削減される</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：B</b>　初期に追加の労力やコストがかかることがあるが、後期の労力やコストの削減が期待される</div><div class="small" style="margin-top:6px">シフトレフトは初期に追加のトレーニング・労力・コストがかかることがあるが、後期の労力やコストの削減が期待される。ステークホルダーがこの考え方に納得し、受け入れることが重要。</div><div><a class="report" href="contact.html?q=fl%3A2-26&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F11" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q12"><div><span class="tag">問12</span><span class="tag">第2章 ソフトウェア開発ライフサイクル全体を通してのテスト</span><span class="tag">シラバス 2.2.1</span><span class="qid">ID 2-02</span></div><div class="qtext">開発中のECサイトと、外部の決済サービスとの間のインターフェースに焦点を当てるテストレベルはどれか。</div><ol class="olist"><li data-right="0"><b>A</b>　コンポーネント統合テスト</li><li data-right="0"><b>B</b>　受け入れテスト</li><li data-right="1"><b>C</b>　システム統合テスト</li><li data-right="0"><b>D</b>　システムテスト</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：C</b>　システム統合テスト</div><div class="small" style="margin-top:6px">システム統合テストは、テスト対象システムと他のシステムや外部サービスとのインターフェースに焦点を当てる。コンポーネント統合テストはコンポーネント間のインターフェースが対象。</div><div><a class="report" href="contact.html?q=fl%3A2-02&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F12" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q13"><div><span class="tag">問13</span><span class="tag">第2章 ソフトウェア開発ライフサイクル全体を通してのテスト</span><span class="tag">シラバス 2.2.2</span><span class="qid">ID 2-07</span></div><div class="qtext">ISO/IEC 25010 に基づき、シラバスが非機能ソフトウェア品質特性として挙げているものに<b>含まれない</b>ものはどれか。</div><ol class="olist"><li data-right="0"><b>A</b>　性能効率性</li><li data-right="1"><b>B</b>　機能正確性</li><li data-right="0"><b>C</b>　セキュリティ</li><li data-right="0"><b>D</b>　移植性</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：B</b>　機能正確性</div><div class="small" style="margin-top:6px">シラバスが挙げる非機能品質特性は、性能効率性・互換性・使用性・信頼性・セキュリティ・保守性・移植性。機能完全性・機能正確性・機能適切性のチェックは機能テストの主な目的。</div><div><a class="report" href="contact.html?q=fl%3A2-07&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F13" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q14"><div><span class="tag">問14</span><span class="tag">第2章 ソフトウェア開発ライフサイクル全体を通してのテスト</span><span class="tag">シラバス 2.2.3</span><span class="qid">ID 2-18</span></div><div class="qtext">リグレッションテストについて、正しい記述はどれか。</div><ol class="olist"><li data-right="0"><b>A</b>　元の欠陥が正しく修正されたことを確認するために、修正箇所を中心にテストする</li><li data-right="0"><b>B</b>　悪影響は変更したコンポーネント内に限られるため、影響度分析で対象をそのコンポーネントに絞る</li><li data-right="0"><b>C</b>　テストケースが安定するプロジェクト終盤から、自動化を始めることが推奨されている</li><li data-right="1"><b>D</b>　何度も実行され、テストケースもリリースごとに増えていくため、自動化の有力な候補になる</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：D</b>　何度も実行され、テストケースもリリースごとに増えていくため、自動化の有力な候補になる</div><div class="small" style="margin-top:6px">リグレッションテストは、変更による悪影響がないことを確認する。悪影響は同じコンポーネント、同じシステムの他のコンポーネント、接続された他システム、さらには環境にも及ぶことがある。影響度分析で範囲を最適化し、自動化はプロジェクトの早期に始めるべきとされる。</div><div><a class="report" href="contact.html?q=fl%3A2-18&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F14" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q15"><div><span class="tag">問15</span><span class="tag">第3章 静的テスト</span><span class="tag">シラバス 3.1</span><span class="qid">ID 3-14</span></div><div class="qtext">静的テストについて、正しい記述はどれか。</div><ol class="olist"><li data-right="0"><b>A</b>　静的テストの目的は欠陥検出であり、試験性などの特性の評価は含まれない</li><li data-right="1"><b>B</b>　静的テストは、検証および妥当性確認の両方に適用できる</li><li data-right="0"><b>C</b>　静的テストは検証に適用できるが、妥当性確認には動的テストが必要となる</li><li data-right="0"><b>D</b>　静的テストは人手によるレビューを指し、ツールによる静的解析は含まない</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：B</b>　静的テストは、検証および妥当性確認の両方に適用できる</div><div class="small" style="margin-top:6px">静的テストは検証と妥当性確認の両方に適用できる。人手による確認（レビュー）とツールによる評価（静的解析）がある。目的には、品質向上、欠陥検出、可読性・完全性・正確性・試験性・一貫性などの特性の評価が含まれる。</div><div><a class="report" href="contact.html?q=fl%3A3-14&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F15" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q16"><div><span class="tag">問16</span><span class="tag">第3章 静的テスト</span><span class="tag">シラバス 3.1.3</span><span class="qid">ID 3-01</span></div><div class="qtext">静的テストと動的テストの違いについて、正しい記述はどれか。</div><ol class="olist"><li data-right="0"><b>A</b>　静的テストは作業成果物を実行して故障を引き起こし、その後の分析で欠陥を特定する</li><li data-right="0"><b>B</b>　性能効率性のようにコードの実行に依存する品質特性は、静的テストで測定するのが適している</li><li data-right="1"><b>C</b>　静的テストは欠陥を直接見つけ、動的テストは故障を起こしてから欠陥を特定する</li><li data-right="0"><b>D</b>　動的テストは、要件仕様書のように実行できない作業成果物にも適用できる</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：C</b>　静的テストは欠陥を直接見つけ、動的テストは故障を起こしてから欠陥を特定する</div><div class="small" style="margin-top:6px">静的テストは作業成果物の欠陥を直接見つける。動的テストはソフトウェアを実行して故障を起こし、分析によって欠陥を特定する。静的テストは実行できない作業成果物にも使え、保守性のような実行に依存しない特性の測定に向いている。性能効率性のような実行に依存する特性は動的テストで測定する。</div><div><a class="report" href="contact.html?q=fl%3A3-01&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F16" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q17"><div><span class="tag">問17</span><span class="tag">第3章 静的テスト</span><span class="tag">シラバス 3.2.2</span><span class="qid">ID 3-18</span></div><div class="qtext">サイズが大きく、1回のレビューではカバーしきれない作業成果物について、シラバスの記述に合っているものはどれか。</div><ol class="olist"><li data-right="0"><b>A</b>　集中力を保つため、レビューする範囲を重要な部分だけに絞り、残りは対象外とする</li><li data-right="0"><b>B</b>　1回のレビューでカバーしきれない作業成果物は、静的解析の対象に切り替える</li><li data-right="1"><b>C</b>　作業成果物全体をカバーするために、レビュープロセスを2、3回行うことがある</li><li data-right="0"><b>D</b>　レビューアの人数を増やし、1回のレビューミーティングで全体を確認する</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：C</b>　作業成果物全体をカバーするために、レビュープロセスを2、3回行うことがある</div><div class="small" style="margin-top:6px">多くの作業成果物はサイズが大きすぎて1回のレビューではカバーしきれないため、レビュープロセスを2、3回行うことがある。成功要因としても、集中力を保てるよう対象を小さく分割することが挙げられている。</div><div><a class="report" href="contact.html?q=fl%3A3-18&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F17" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q18"><div><span class="tag">問18</span><span class="tag">第3章 静的テスト</span><span class="tag">シラバス 3.2.4</span><span class="qid">ID 3-12</span></div><div class="qtext">ウォークスルーについて、正しい記述はどれか。</div><ol class="olist"><li data-right="0"><b>A</b>　定義されたプロセスに従わず、文書化されたアウトプットも求められない種類のレビューである</li><li data-right="0"><b>B</b>　最も形式的なレビュー種別で、事前の個人レビューとメトリクスの収集が求められる</li><li data-right="0"><b>C</b>　モデレーターが主導し、技術的に適格なレビューアが技術的な問題について合意形成を図る</li><li data-right="1"><b>D</b>　作成者が主導し、品質評価、レビューアの教育、合意形成、不正の検出など多くの目的を果たせる</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：D</b>　作成者が主導し、品質評価、レビューアの教育、合意形成、不正の検出など多くの目的を果たせる</div><div class="small" style="margin-top:6px">ウォークスルーは作成者が主導する。レビューアは事前に個人レビューをしてもよいが必須ではない。選択肢Cはテクニカルレビュー、選択肢Bはインスペクション、選択肢Aは非形式的レビューの説明。</div><div><a class="report" href="contact.html?q=fl%3A3-12&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F18" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q19"><div><span class="tag">問19</span><span class="tag">第4章 テスト分析と設計</span><span class="tag">シラバス 4.1</span><span class="qid">ID 4-25</span></div><div class="qtext">テスト技法がテスト分析やテスト設計の際にテスト担当者を支援する内容として、シラバスで挙げられているものの組み合わせはどれか。</div><ol class="olist"><li data-right="1"><b>A</b>　テスト条件の定義、カバレッジアイテムの識別、テストデータの識別</li><li data-right="0"><b>B</b>　テスト進捗のモニタリング、欠陥の根本原因分析、リリース判定</li><li data-right="0"><b>C</b>　テスト工数の見積り、テストスケジュールの作成、テスト要員の割り当て</li><li data-right="0"><b>D</b>　テスト環境の構築、テスト自動化ツールの選定、ライセンスの管理</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：A</b>　テスト条件の定義、カバレッジアイテムの識別、テストデータの識別</div><div class="small" style="margin-top:6px">テスト技法は、比較的少ないながらも十分なテストケースのセットを体系的に開発するのに役立ち、テスト条件の定義、カバレッジアイテムの識別、テストデータの識別を支援する。</div><div><a class="report" href="contact.html?q=fl%3A4-25&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F19" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q20"><div><span class="tag">問20</span><span class="tag">第4章 テスト分析と設計</span><span class="tag">シラバス 4.2.1</span><span class="qid">ID 4-44</span></div><div class="qtext">同値パーティションを識別できる対象について、正しい記述はどれか。</div><ol class="olist"><li data-right="0"><b>A</b>　仕様書に明記された入力値だけで、内部値や構成アイテムは対象にならない</li><li data-right="0"><b>B</b>　順序性のある数値データだけで、離散値や順序のない値は対象にならない</li><li data-right="1"><b>C</b>　入力、出力、内部値、時間関連の値など、テスト対象に関連するあらゆるデータ要素</li><li data-right="0"><b>D</b>　有限の集合だけで、連続した値や無限の集合はパーティションに分けられない</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：C</b>　入力、出力、内部値、時間関連の値など、テスト対象に関連するあらゆるデータ要素</div><div class="small" style="margin-top:6px">同値パーティションは、テスト対象に関連するあらゆるデータ要素について識別できる。パーティションは連続・離散、順序性あり・なし、有限・無限のいずれでもよい。</div><div><a class="report" href="contact.html?q=fl%3A4-44&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F20" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q21"><div><span class="tag">問21</span><span class="tag">第4章 テスト分析と設計</span><span class="tag">シラバス 4.2.2</span><span class="qid">ID 4-28</span></div><div class="qtext">会員登録できる年齢は 18〜65歳（整数）で、17以下と66以上はエラーになる。<b>2値境界値分析</b>で100%のカバレッジを達成するために必要な値の組み合わせはどれか。</div><ol class="olist"><li data-right="0"><b>A</b>　0, 18, 65, 100</li><li data-right="0"><b>B</b>　17, 18, 19, 64, 65, 66</li><li data-right="0"><b>C</b>　18, 65</li><li data-right="1"><b>D</b>　17, 18, 65, 66</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：D</b>　17, 18, 65, 66</div><div class="small" style="margin-top:6px">境界値は各パーティションの最小値・最大値で、17（無効の最大値）、18、65、66（無効の最小値）。2値BVAでは境界値とその隣接パーティションの最も近い値がカバレッジアイテムなので、17, 18, 65, 66 の4つ。選択肢Bは、有効パーティションの境界値18と65に3値BVAを適用した場合の値。</div><div><a class="report" href="contact.html?q=fl%3A4-28&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F21" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q22"><div><span class="tag">問22</span><span class="tag">第4章 テスト分析と設計</span><span class="tag">シラバス 4.2.2</span><span class="qid">ID 4-50</span></div><div class="qtext">2値境界値分析と3値境界値分析の比較として、正しいものはどれか。</div><ol class="olist"><li data-right="1"><b>A</b>　3値BVAのほうが厳密で、2値BVAでは見落とされた欠陥を検出する可能性がある</li><li data-right="0"><b>B</b>　2値BVAと3値BVAは、境界値の数が同じなのでカバレッジアイテムも同じである</li><li data-right="0"><b>C</b>　2値BVAのほうが厳密で、3値BVAでは見落とされた欠陥を検出できる可能性がある</li><li data-right="0"><b>D</b>　3値BVAのカバレッジアイテムは、すべて各パーティションの境界値になる</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：A</b>　3値BVAのほうが厳密で、2値BVAでは見落とされた欠陥を検出する可能性がある</div><div class="small" style="margin-top:6px">3値BVAは境界値ごとに境界値とその両隣の3つをカバレッジアイテムとするため、2値BVAより厳密。3値BVAでは一部のカバレッジアイテムが境界値にならない場合がある。</div><div><a class="report" href="contact.html?q=fl%3A4-50&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F22" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q23"><div><span class="tag">問23</span><span class="tag">第4章 テスト分析と設計</span><span class="tag">シラバス 4.2.3</span><span class="qid">ID 4-52</span></div><div class="qtext">「拡張指定デシジョンテーブル」の説明として、正しいものはどれか。</div><ol class="olist"><li data-right="0"><b>A</b>　結果に影響しない条件を持つ列を統合して、列の数を最小化したデシジョンテーブル</li><li data-right="0"><b>B</b>　すべての条件とアクションの値を、真・偽のブール値だけで示すデシジョンテーブル</li><li data-right="0"><b>C</b>　実行不可能な組み合わせの列も削除せずに、すべての列を含めたデシジョンテーブル</li><li data-right="1"><b>D</b>　条件やアクションの一部または全部が、数値の範囲や同値パーティションなど複数の値をとる</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：D</b>　条件やアクションの一部または全部が、数値の範囲や同値パーティションなど複数の値をとる</div><div class="small" style="margin-top:6px">制限指定デシジョンテーブルでは値はすべてブール値で示す。拡張指定デシジョンテーブルでは、条件やアクションの一部または全部が複数の値をとることがある。</div><div><a class="report" href="contact.html?q=fl%3A4-52&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F23" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q24"><div><span class="tag">問24</span><span class="tag">第4章 テスト分析と設計</span><span class="tag">シラバス 4.2.4</span><span class="qid">ID 4-35</span></div><div class="qtext">4つの状態を持つシステムで、実行したテストケースが3つの状態を通過した。全状態カバレッジは何%か。</div><ol class="olist"><li data-right="1"><b>A</b>　75%</li><li data-right="0"><b>B</b>　100%</li><li data-right="0"><b>C</b>　25%</li><li data-right="0"><b>D</b>　50%</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：A</b>　75%</div><div class="small" style="margin-top:6px">全状態カバレッジ＝通過した状態の数 ÷ 状態の総数 ＝ 3 ÷ 4 ＝ 75%。全状態カバレッジは、すべての遷移を通さなくても達成できることが一般的なため、有効遷移カバレッジより弱い。</div><div><a class="report" href="contact.html?q=fl%3A4-35&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F24" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q25"><div><span class="tag">問25</span><span class="tag">第4章 テスト分析と設計</span><span class="tag">シラバス 4.2.4</span><span class="qid">ID 4-59</span></div><div class="qtext">全遷移カバレッジを目指すとき、1つのテストケースで無効な遷移を1つだけテストすることが推奨される理由はどれか。</div><ol class="olist"><li data-right="0"><b>A</b>　無効な遷移ごとに独立したテストケースにすることで、テストケースの数を最小にするため</li><li data-right="1"><b>B</b>　ある欠陥が別の欠陥の検出を妨げる「欠陥のマスキング」を避けるため</li><li data-right="0"><b>C</b>　1つのテストケースに含める遷移の数を、0スイッチカバレッジの定義に合わせるため</li><li data-right="0"><b>D</b>　テスト実行の時間を短縮し、故障が発生した場合の再テストの工数を減らすため</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：B</b>　ある欠陥が別の欠陥の検出を妨げる「欠陥のマスキング」を避けるため</div><div class="small" style="margin-top:6px">1つのテストケースで無効な遷移を1つだけテストすることで、欠陥のマスキングを避けられる。</div><div><a class="report" href="contact.html?q=fl%3A4-59&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F25" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q26"><div><span class="tag">問26</span><span class="tag">第4章 テスト分析と設計</span><span class="tag">シラバス 4.3.2</span><span class="qid">ID 4-13</span></div><div class="qtext">ステートメントカバレッジとブランチカバレッジの関係について、正しい記述はどれか。</div><ol class="olist"><li data-right="0"><b>A</b>　ブランチカバレッジ100%を達成すれば、コード内のすべてのパスを実行したことになる</li><li data-right="1"><b>B</b>　ブランチカバレッジ100%を達成すれば、ステートメントカバレッジも100%になる</li><li data-right="0"><b>C</b>　両者は独立しており、一方の達成は他方に影響しない</li><li data-right="0"><b>D</b>　ステートメントカバレッジ100%を達成すれば、ブランチカバレッジも100%になる</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：B</b>　ブランチカバレッジ100%を達成すれば、ステートメントカバレッジも100%になる</div><div class="small" style="margin-top:6px">ブランチカバレッジはステートメントカバレッジを包含する。逆は成り立たない（例：else のない if の偽側は、ステートメントをすべて通しても通らないことがある）。また、ブランチを通しても特定のパスの実行が必要な欠陥は見つからない可能性があり、すべてのパスを実行したことにはならない。</div><div><a class="report" href="contact.html?q=fl%3A4-13&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F26" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q27"><div><span class="tag">問27</span><span class="tag">第4章 テスト分析と設計</span><span class="tag">シラバス 4.4.1</span><span class="qid">ID 4-21</span></div><div class="qtext">想定されるエラー・欠陥・故障のリストを作成または入手し、それらを露わにするテストケースを設計する、エラー推測の系統的なアプローチはどれか。</div><ol class="olist"><li data-right="1"><b>A</b>　フォールト攻撃</li><li data-right="0"><b>B</b>　ペアテスト</li><li data-right="0"><b>C</b>　セッションベースドテスト</li><li data-right="0"><b>D</b>　チェックリストベースドテスト</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：A</b>　フォールト攻撃</div><div class="small" style="margin-top:6px">フォールト攻撃はエラー推測を実施するための系統的なアプローチ。リストは経験、欠陥や故障のデータ、ソフトウェアが不合格になる理由についての一般的な知識をもとに作る。セッションベースドテストは探索的テストを体系的に行う方法。</div><div><a class="report" href="contact.html?q=fl%3A4-21&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F27" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q28"><div><span class="tag">問28</span><span class="tag">第4章 テスト分析と設計</span><span class="tag">シラバス 4.4.2</span><span class="qid">ID 4-66</span></div><div class="qtext">セッションベースドテストにおける「デブリーフィング」の説明として、正しいものはどれか。</div><ol class="olist"><li data-right="0"><b>A</b>　テストセッションの時間枠を決め、セッションごとにテスト目的を割り当てる活動</li><li data-right="0"><b>B</b>　テストセッションの前に、テスト担当者とステークホルダーの間でテストチャーターを合意する活動</li><li data-right="1"><b>C</b>　テストセッションの後に、テスト担当者とステークホルダーの間でテスト結果について行う議論</li><li data-right="0"><b>D</b>　テストセッション中に、実行した手順や発見した事項をテスト担当者が記録するシート</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：C</b>　テストセッションの後に、テスト担当者とステークホルダーの間でテスト結果について行う議論</div><div class="small" style="margin-top:6px">デブリーフィングはテストセッション後の議論。セッションベースドアプローチでは、あらかじめ決めた時間枠内で、テスト目的を含むテストチャーターに従ってテストを行い、テストセッションシートに手順や発見を記録することがある。</div><div><a class="report" href="contact.html?q=fl%3A4-66&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F28" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q29"><div><span class="tag">問29</span><span class="tag">第4章 テスト分析と設計</span><span class="tag">シラバス 4.5.1</span><span class="qid">ID 4-15</span></div><div class="qtext">ユーザーストーリーの「3つのC」のうち、「確認（Confirmation）」が表すものはどれか。</div><ol class="olist"><li data-right="0"><b>A</b>　ソフトウェアがどのように使われるかについての会話</li><li data-right="1"><b>B</b>　受け入れ基準</li><li data-right="0"><b>C</b>　ユーザーストーリーを記述する媒体</li><li data-right="0"><b>D</b>　ストーリーポイントによる見積り</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：B</b>　受け入れ基準</div><div class="small" style="margin-top:6px">3つのCは、カード（Card：ストーリーを記述する媒体）、会話（Conversation：どう使われるかの説明）、確認（Confirmation：受け入れ基準）。よいユーザーストーリーの特性としては INVEST（独立・交渉可能・価値がある・見積り可能・小さい・テスト可能）も押さえておきたい。</div><div><a class="report" href="contact.html?q=fl%3A4-15&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F29" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q30"><div><span class="tag">問30</span><span class="tag">第5章 テスト活動のマネジメント</span><span class="tag">シラバス 5.1.1</span><span class="qid">ID 5-17</span></div><div class="qtext">テスト計画書の目的として、シラバスで挙げられているものはどれか。</div><ol class="olist"><li data-right="0"><b>A</b>　テスト実行の結果と残存リスクをまとめ、リリース判定の根拠として報告する</li><li data-right="1"><b>B</b>　テストが既存のテストポリシーやテスト戦略に従っていること（または逸脱の理由）を示す</li><li data-right="0"><b>C</b>　テスト中に発見した欠陥の再現手順と影響度を記録し、開発担当者に伝える</li><li data-right="0"><b>D</b>　個々のテストケースについて、入力値・期待結果・実行手順を詳細に定義する</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：B</b>　テストが既存のテストポリシーやテスト戦略に従っていること（または逸脱の理由）を示す</div><div class="small" style="margin-top:6px">テスト計画書は、テスト目的を達成する手段とスケジュールの文書化、確立した基準を満たすことの保証、チームやステークホルダーとのコミュニケーション手段、テストポリシー・テスト戦略の遵守（または逸脱の理由）の提示といった目的を持つ。</div><div><a class="report" href="contact.html?q=fl%3A5-17&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F30" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q31"><div><span class="tag">問31</span><span class="tag">第5章 テスト活動のマネジメント</span><span class="tag">シラバス 5.1.3</span><span class="qid">ID 5-19</span></div><div class="qtext">典型的な<b>開始基準</b>の例として、最も適切なものはどれか。</div><ol class="olist"><li data-right="0"><b>A</b>　リグレッションテストがすべて自動化された</li><li data-right="0"><b>B</b>　未解決の重大な欠陥が残っていない</li><li data-right="1"><b>C</b>　すべてのスモークテストが合格している</li><li data-right="0"><b>D</b>　計画したカバレッジレベルを達成している</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：C</b>　すべてのスモークテストが合格している</div><div class="small" style="margin-top:6px">開始基準の典型例は、リソースの可用性、テストウェアの可用性、テスト対象の初期品質レベル（すべてのスモークテストが合格など）。それ以外の選択肢は終了基準（徹底度の測定や完了基準）の例。</div><div><a class="report" href="contact.html?q=fl%3A5-19&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F31" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q32"><div><span class="tag">問32</span><span class="tag">第5章 テスト活動のマネジメント</span><span class="tag">シラバス 5.1.4</span><span class="qid">ID 5-21</span></div><div class="qtext">各専門家が単独で見積もり、結果の偏差が大きければ議論したうえで再び単独で見積もる、という手順をコンセンサスが得られるまで繰り返す見積り技法はどれか。</div><ol class="olist"><li data-right="0"><b>A</b>　外挿</li><li data-right="1"><b>B</b>　ワイドバンドデルファイ</li><li data-right="0"><b>C</b>　比率に基づく見積り</li><li data-right="0"><b>D</b>　三点見積り</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：B</b>　ワイドバンドデルファイ</div><div class="small" style="margin-top:6px">ワイドバンドデルファイは、繰り返しによるエキスパートベースの見積り技法。アジャイル開発でよく使われるプランニングポーカーは、そのバリエーションの1つ。比率に基づく見積りと外挿はメトリクスベースの技法。</div><div><a class="report" href="contact.html?q=fl%3A5-21&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F32" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q33"><div><span class="tag">問33</span><span class="tag">第5章 テスト活動のマネジメント</span><span class="tag">シラバス 5.1.5</span><span class="qid">ID 5-04</span></div><div class="qtext">各テストケースがカバーする要件は次の通り。<table class='dt'><tr><th>テストケース</th><th>カバーする要件</th></tr><tr><td>TC1</td><td>A, B, C, D</td></tr><tr><td>TC2</td><td>A, B</td></tr><tr><td>TC3</td><td>E, F, G</td></tr><tr><td>TC4</td><td>D, E</td></tr></table><b>追加カバレッジの優先順位付け</b>を使うとき、2番目に実行するテストケースはどれか。</div><ol class="olist"><li data-right="0"><b>A</b>　TC1</li><li data-right="0"><b>B</b>　TC4</li><li data-right="1"><b>C</b>　TC3</li><li data-right="0"><b>D</b>　TC2</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：C</b>　TC3</div><div class="small" style="margin-top:6px">まず最も高いカバレッジを持つ TC1（4件）を実行する。次に、まだカバーされていない要件を最も多く追加するテストケースを選ぶ。TC1実行後の追加分は TC2 = 0件、TC3 = 3件（E, F, G）、TC4 = 1件（E）なので、2番目は TC3。</div><div><a class="report" href="contact.html?q=fl%3A5-04&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F33" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q34"><div><span class="tag">問34</span><span class="tag">第5章 テスト活動のマネジメント</span><span class="tag">シラバス 5.1.7</span><span class="qid">ID 5-05</span></div><div class="qtext">テストの四象限で、スモークテストや非機能テスト（使用性テストを除く）が含まれる象限はどれか。</div><ol class="olist"><li data-right="0"><b>A</b>　第三象限（ビジネス指向、プロダクトを批評する）</li><li data-right="0"><b>B</b>　第二象限（ビジネス指向、チームを支援する）</li><li data-right="1"><b>C</b>　第四象限（テクノロジー指向、プロダクトを批評する）</li><li data-right="0"><b>D</b>　第一象限（テクノロジー指向、チームを支援する）</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：C</b>　第四象限（テクノロジー指向、プロダクトを批評する）</div><div class="small" style="margin-top:6px">第一象限：コンポーネントテスト・コンポーネント統合テスト（自動化してCIに含める）。第二象限：機能テスト、実例、ユーザーストーリーテスト、UXプロトタイプ、APIテスト、シミュレーション。第三象限：探索的テスト、使用性テスト、ユーザー受け入れテスト（多くは手動）。第四象限：スモークテスト、非機能テスト（使用性を除く、しばしば自動化）。</div><div><a class="report" href="contact.html?q=fl%3A5-05&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F34" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q35"><div><span class="tag">問35</span><span class="tag">第5章 テスト活動のマネジメント</span><span class="tag">シラバス 5.2</span><span class="qid">ID 5-44</span></div><div class="qtext">「リスクベースドテスト」の説明として正しいものはどれか。</div><ol class="olist"><li data-right="0"><b>A</b>　リスクの移転を目的として、テストを外部の組織に委託するテストアプローチ</li><li data-right="0"><b>B</b>　プロジェクトリスクの分析結果に基づいて、テストのスケジュールと予算を決めるアプローチ</li><li data-right="0"><b>C</b>　テストで発見された故障の重大度に基づいて、欠陥の修正順序を決めるアプローチ</li><li data-right="1"><b>D</b>　リスク分析とリスクコントロールに基づいてテスト活動を選択し、優先順位を付けるアプローチ</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：D</b>　リスク分析とリスクコントロールに基づいてテスト活動を選択し、優先順位を付けるアプローチ</div><div class="small" style="margin-top:6px">リスクベースドテストは、リスク分析とリスクコントロールに基づいてテスト活動を選択し、優先順位を付け、マネジメントするテストアプローチ。</div><div><a class="report" href="contact.html?q=fl%3A5-44&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F35" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q36"><div><span class="tag">問36</span><span class="tag">第5章 テスト活動のマネジメント</span><span class="tag">シラバス 5.2.2</span><span class="qid">ID 5-47</span></div><div class="qtext">プロジェクトリスクの分類のうち、「スキル不足、対立、コミュニケーションの問題、人手不足」が例として挙げられているものはどれか。</div><ol class="olist"><li data-right="0"><b>A</b>　技術的な問題</li><li data-right="0"><b>B</b>　組織的な問題</li><li data-right="0"><b>C</b>　サプライヤーの問題</li><li data-right="1"><b>D</b>　人の問題</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：D</b>　人の問題</div><div class="small" style="margin-top:6px">人の問題の例はスキル不足、対立、コミュニケーションの問題、人手不足。組織的な問題は納期遅れ・不正確な見積り・コストダウン、技術的な問題はスコープクリープ・ツールサポートの不備、サプライヤーの問題は第三者の納品失敗・サポート企業の倒産など。</div><div><a class="report" href="contact.html?q=fl%3A5-47&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F36" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q37"><div><span class="tag">問37</span><span class="tag">第5章 テスト活動のマネジメント</span><span class="tag">シラバス 5.3</span><span class="qid">ID 5-30</span></div><div class="qtext">テストコントロールのための指示の例として、最も適切なものはどれか。</div><ol class="olist"><li data-right="0"><b>A</b>　テストベースを分析して、テスト条件を定義し優先順位を付ける</li><li data-right="1"><b>B</b>　テスト環境の提供の遅れに対応するため、テストスケジュールを調整する</li><li data-right="0"><b>C</b>　テスト進捗メトリクスを収集し、テスト計画に対する実際の進捗を評価する</li><li data-right="0"><b>D</b>　テストウェアを保管し、テスト環境を合意した状態でシャットダウンする</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：B</b>　テスト環境の提供の遅れに対応するため、テストスケジュールを調整する</div><div class="small" style="margin-top:6px">テストコントロールは、テストモニタリングの情報を使って必要な補正のアクションを指示する。例として、リスクが問題化した場合の優先度の見直し、再作業時の開始・終了基準の再評価、環境提供の遅れへのスケジュール調整、リソースの追加がある。選択肢Cはテストモニタリング、選択肢Dはテスト完了。</div><div><a class="report" href="contact.html?q=fl%3A5-30&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F37" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q38"><div><span class="tag">問38</span><span class="tag">第5章 テスト活動のマネジメント</span><span class="tag">シラバス 5.4</span><span class="qid">ID 5-10</span></div><div class="qtext">構成管理について、正しい記述はどれか。</div><ol class="olist"><li data-right="0"><b>A</b>　CI/CDのパイプラインでは、ビルドツールが版を管理するため構成管理の仕組みは含まれない</li><li data-right="0"><b>B</b>　新しいベースラインを作成すると以前の記録は上書きされるため、過去のテスト結果は再現できない</li><li data-right="0"><b>C</b>　構成管理の対象はソースコードとビルドファイルで、テストケースやテストレポートは含めない</li><li data-right="1"><b>D</b>　テスト用に承認された構成アイテムはベースラインとなり、正式な変更コントロールでのみ変更できる</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：D</b>　テスト用に承認された構成アイテムはベースラインとなり、正式な変更コントロールでのみ変更できる</div><div class="small" style="margin-top:6px">構成管理は、テスト計画書・テストケース・テスト結果・テストログ・テストレポートなども構成アイテムとして識別・コントロール・追跡する。変更した構成アイテムの記録を残すので、以前のベースラインに戻して過去のテスト結果を再現できる。DevOpsパイプラインには、通常、自動化された構成管理が含まれる。</div><div><a class="report" href="contact.html?q=fl%3A5-10&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F38" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q39"><div><span class="tag">問39</span><span class="tag">第6章 テストツール</span><span class="tag">シラバス 6.1</span><span class="qid">ID 6-05</span></div><div class="qtext">仮想マシンやコンテナ化ツールは、シラバスのどの種類のテスト支援ツールの例として挙げられているか。</div><ol class="olist"><li data-right="1"><b>A</b>　拡張性・展開の標準化をサポートするツール</li><li data-right="0"><b>B</b>　テスト実行とカバレッジツール</li><li data-right="0"><b>C</b>　DevOpsツール（デリバリーパイプラインを支援）</li><li data-right="0"><b>D</b>　テスト設計および実装ツール</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：A</b>　拡張性・展開の標準化をサポートするツール</div><div class="small" style="margin-top:6px">仮想マシンやコンテナ化ツールは、拡張性・展開の標準化をサポートするツールの例。DevOpsツールはデリバリーパイプライン、ワークフローの追跡、自動ビルドプロセス、CI/CDを支援するツール。なお表計算ソフトのように、テスト専用でないツールもテストのコンテキストではテストツールになりうる。</div><div><a class="report" href="contact.html?q=fl%3A6-05&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F39" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div><div class="card" id="q40"><div><span class="tag">問40</span><span class="tag">第6章 テストツール</span><span class="tag">シラバス 6.2</span><span class="qid">ID 6-04</span></div><div class="qtext">テスト自動化の利点として、シラバスの内容に合っているものはどれか。</div><ol class="olist"><li data-right="0"><b>A</b>　自動化すれば、ユーザー視点の手動テストも含めて手動テストは不要になる</li><li data-right="0"><b>B</b>　オープンソースのツールを使えば、保守やアップデートを気にする必要がなくなる</li><li data-right="1"><b>C</b>　一貫性と再実行性が高まることで、単純なヒューマンエラーを防げる</li><li data-right="0"><b>D</b>　ツールを取得するだけで、導入や保守の労力をかけずに成功が得られる</li></ol><details class="ans"><summary>解答と解説</summary><div style="margin-top:6px"><b>正解：C</b>　一貫性と再実行性が高まることで、単純なヒューマンエラーを防げる</div><div class="small" style="margin-top:6px">一貫性・再実行性の向上によるヒューマンエラーの防止は利点の1つ。ツールを取得するだけでは成功は保証されず、導入・保守・トレーニングの労力が必要。OSSは放置されるとアップデートが得られなくなるリスクがある。DevOpsでも、ユーザー視点の手動テストは依然として必要とされる。</div><div><a class="report" href="contact.html?q=fl%3A6-04&w=%E5%95%8F%E9%A1%8C%E8%A7%A3%E8%AA%AC%20%E3%82%BB%E3%83%83%E3%83%88B%20%E5%95%8F40" target="_blank" rel="noopener">この問題の誤りを報告する（新しいタブ）</a></div></details></div></div>
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </main>
+
+  <div class="modal-bg hidden" id="modal"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-msg">
+    <div class="msg" id="modal-msg"></div>
+    <div class="nums" id="modal-nums"></div>
+    <div class="acts" id="modal-acts"></div>
+  </div></div>
+
+  <footer>
+    <nav class="fnav" aria-label="サイトについて">
+      <a href="howto.html">使い方</a>
+      <a href="faq.html">よくある質問</a>
+      <a href="operator.html">運営者情報</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+      <a href="contact.html">お問い合わせ</a>
+    </nav>
+    <div class="fnote">
+      <div class="fnote-h">ご利用にあたって</div>
+      <p>当サイトはJSTQB・ISTQBとは関係のない非公式の学習サイトです。問題はすべてオリジナルで、実際の試験問題ではありません。</p>
+      <p><span id="footer-src">出典：ISTQB® テスト技術者資格制度 Foundation Level シラバス、Advanced Level シラバス テストマネジメント（著作権：International Software Testing Qualifications Board）およびその日本語翻訳版（著作権：JSTQB®）。</span>問題の根拠として節番号を示しています。内容は必ず公式シラバスでご確認ください。</p>
+      <p>ISTQB® および JSTQB® は、各団体の商標または登録商標です。</p>
+    </div>
+    <p class="fupd">最終更新：2026年9月28日（<a href="changelog.html">更新履歴</a>）</p>
+    <p class="fcopy">© 2026 テスドリ</p>
+  </footer>
+</div>
+
+<script>window.PAGE={"name": "explain-set", "exam": "fl", "set": "B"};</script>
+<script src="data.js?v=04aae69b" defer></script>
+<script src="app.js?v=947ce484" defer></script>
+</body>
+</html>
