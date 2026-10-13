@@ -110,7 +110,7 @@
       '<button class="btn" id="resume-drop">破棄する</button></div>';
     $("resume-go").onclick = resumeMock;
     $("resume-drop").onclick = function(){
-      if (window.confirm("中断中の模擬試験を破棄しますか？（採点されません）")){ clearMock(); renderResume(); }
+      askConfirm("中断中の模擬試験を破棄してよろしいですか？\n途中の解答は消え、元に戻すことはできません（採点もされません）。", "破棄する", function(){ clearMock(); renderResume(); }, true);
     };
   }
 
@@ -153,7 +153,7 @@
     if (!list.length) return;
     state.list = $("shuffle").checked ? shuffle(list) : list.slice();
     state.i = 0; state.results = [];
-    show("quiz"); renderQuestion();
+    show("quiz"); updateScore(); renderQuestion();
   }
 
   function head(q){
@@ -196,8 +196,41 @@
     $("next").onclick = next;
   }
 
+  /* 演習中の正解数・正答率（模擬試験では出さない） */
+  function updateScore(){
+    var n = state.results.length, ok = state.results.filter(function(r){ return r.ok; }).length;
+    $("q-score").innerHTML = '正解数 <b>' + ok + ' / ' + n + '</b> 問中　正答率 <b>' + (n ? (ok / n * 100).toFixed(1) + '%' : '−') + '</b>';
+  }
+  function bar(p){ return '<div class="rep-bar"><i style="width:' + p + '%"></i></div>'; }
+  function openReport(){
+    var res = {}; state.results.forEach(function(r){ res[r.q.id] = r; });
+    var n = state.results.length, ok = state.results.filter(function(r){ return r.ok; }).length, rate = n ? ok / n * 100 : 0;
+    var left = '<div class="rep-box"><h3>全体（' + TYPES[state.list[0].type] + '）</h3><div class="rep-stats">' +
+      '<div><small>出題数</small><b>' + n + '</b>問</div><div><small>正解数</small><b>' + ok + '</b>問</div>' +
+      '<div><small>正答率</small><b>' + (n ? rate.toFixed(1) : '−') + '</b>' + (n ? '%' : '') + '</div></div>' + bar(rate) +
+      '<div class="small muted" style="margin-top:6px">全' + state.list.length + '問中 ' + n + '問に解答</div></div>';
+    var chs = []; state.list.forEach(function(q){ if (chs.indexOf(q.ch) < 0) chs.push(q.ch); }); chs.sort();
+    left += '<div class="rep-box"><h3>章別</h3>' + chs.map(function(c){
+      var rs = state.results.filter(function(r){ return r.q.ch === c; }), g = rs.filter(function(r){ return r.ok; }).length;
+      return '<div class="rep-row"><span>第' + c + '章 ' + CHAPTERS[c] + (rs.length ? '<small>正解 ' + g + ' / ' + rs.length + '</small>' : '') + '</span><span>' +
+        (rs.length ? (g / rs.length * 100).toFixed(1) + '%' : '−') + '</span></div>' + bar(rs.length ? g / rs.length * 100 : 0);
+    }).join("") + '</div>';
+    var right = '<div class="rep-box" style="overflow-x:auto"><table class="rep-tbl"><tr><th>No.</th><th>結果</th><th>章</th><th>シラバス</th><th>問題ID</th></tr>' +
+      state.list.map(function(q, i){
+        var r = res[q.id], mark = r ? (r.ok ? '<span class="r-ok" aria-label="正解">○</span>' : '<span class="r-ng" aria-label="不正解">×</span>') : '<span class="r-na" aria-label="未解答">−</span>';
+        return '<tr><td>' + (i + 1) + '</td><td>' + mark + '</td><td>第' + q.ch + '章</td><td>' + q.sec + '</td><td>' + q.id + '</td></tr>';
+      }).join("") + '</table></div>';
+    $("report-body").innerHTML = '<div>' + left + '</div><div>' + right + '</div>';
+    $("report").classList.remove("hidden");
+    document.body.style.overflow = "hidden";   /* 背面のページはスクロールさせない */
+    $("report-body").scrollTop = 0;
+    $("report-close").focus();
+  }
+  function closeReport(){ $("report").classList.add("hidden"); document.body.style.overflow = ""; var b = $("q-report"); if (b) b.focus(); }
+
   function record(q, ok, picked){
     state.results.push({ q:q, ok:ok, picked:picked });
+    updateScore();
     store.q[q.id] = { last: ok, t: Date.now() };
     save();
   }
@@ -273,7 +306,7 @@
   function renderPracticeResult(){
     var n = state.results.length, ok = state.results.filter(function(r){ return r.ok; }).length;
     var wrong = state.results.filter(function(r){ return !r.ok; });
-    var html = '<h2>結果</h2><div class="big">' + ok + ' / ' + n + '　<span class="muted" style="font-size:1rem">正答率 ' + (n ? Math.round(ok/n*100) : 0) + '%</span></div>';
+    var html = '<h2>結果</h2><div class="big">' + ok + ' / ' + n + '　<span class="muted" style="font-size:1rem">正答率 ' + (n ? (ok / n * 100).toFixed(1) : '0.0') + '%</span></div>';
     if (wrong.length){
       html += '<h2 style="margin-top:16px">間違えた問題（' + wrong.length + '問）</h2><div class="small muted">問題を押すと、正解と解説が開きます。</div><div class="wrongs">' + wrong.map(function(r){
         var q = r.q, plain = q.q.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
@@ -281,7 +314,7 @@
         if (q.type === "choice"){
           var ord = [0, 1, 2, 3];
           body += '<ol class="olist">' + ord.map(function(oi, n){
-            return '<li class="' + (oi === q.answer ? "right" : "") + '"><b>' + "ABCD"[n] + '</b>　' + q.options[oi] +
+            return '<li class="' + (oi === q.answer ? "right" : (oi === r.picked ? "wrong" : "")) + '"><b>' + "ABCD"[n] + '</b>　' + q.options[oi] +
               (oi === q.answer ? '<span class="badge ok">正解</span>' : '') + (oi === r.picked ? '<span class="badge ng">あなたの解答</span>' : '') + '</li>';
           }).join("") + '</ol>';
           body += '<div class="small" style="margin-top:6px">' + explText(q, ord) + '</div>';
@@ -382,7 +415,10 @@
   /* setName を渡すとそのセット、省略すると完全ランダム */
   function startMock(setName){
     var saved = loadMock();
-    if (saved && !saved.stale && !window.confirm("中断中の模擬試験があります。破棄して新しく始めますか？")) return;
+    if (saved && !saved.stale){
+      askConfirm("中断中の模擬試験があります。\n破棄して新しく始めますか？（中断中の解答は元に戻せません）", "破棄して始める", function(){ clearMock(); startMock(setName); }, true);
+      return;
+    }
     clearMock();
     var list = [];
     if (setName){
@@ -420,17 +456,22 @@
   }
 
   function renderMockQ(){
+    /* 書き直してもキーボードの操作位置を保つ */
+    var fa = document.activeElement, keep = null;
+    if (fa && fa.id === "m-flag") keep = "#m-flag";
+    else if (fa && fa.classList && fa.classList.contains("opt") && fa.closest("#m-card")) keep = '#m-card .opt[data-i="' + fa.getAttribute("data-i") + '"]';
+    else if (fa && fa.closest && fa.closest("#m-grid")) keep = "#m-grid button.cur";
     var q = mock.list[mock.i], sel = mock.ans[mock.i];
     var answered = mock.ans.filter(function(a){ return a !== null; }).length;
     $("m-progress").textContent = "問" + (mock.i+1) + " / " + mock.list.length + "　（解答済み " + answered + "）";
-    var html = '<div><span class="tag">問' + (mock.i+1) + '</span><span class="tag">第' + q.ch + '章</span>' +
-      (EX.points ? '<span class="tag">' + pt(q) + '点</span>' : '') + '</div><div class="qtext">' + q.q + '</div>';
+    var html = '<div class="qhead"><span class="tag">問' + (mock.i+1) + '</span><span class="tag">第' + q.ch + '章</span>' +
+      (EX.points ? '<span class="tag">' + pt(q) + '点</span>' : '') +
+      '<button class="btn small flagbtn' + (mock.flag[mock.i] ? " on" : "") + '" id="m-flag" type="button" aria-pressed="' + !!mock.flag[mock.i] + '">' +
+      (mock.flag[mock.i] ? "● 見直しマークを外す" : "○ 見直しマークを付ける") + '</button></div><div class="qtext">' + q.q + '</div>';
     mock.order[mock.i].forEach(function(oi, n){
       html += '<button class="opt' + (sel === oi ? " sel" : "") + '" data-i="' + oi + '" aria-pressed="' + (sel === oi) + '"><span class="k">' + "ABCD"[n] + '</span>' + q.options[oi] + '</button>';
     });
-    html += '<button class="btn small flagbtn' + (mock.flag[mock.i] ? " on" : "") + '" id="m-flag" aria-pressed="' + !!mock.flag[mock.i] + '">' +
-      (mock.flag[mock.i] ? "● 見直しマークを外す" : "○ 見直しマークを付ける") + '</button>' +
-      '<div class="kbd-hint">キーボード：1〜4 で選択、← → で前後の問題、F で見直しマーク</div>';
+    html += '<div class="kbd-hint">キーボード：1〜4 で選択、← → で前後の問題、F で見直しマーク</div>';
     $("m-card").innerHTML = html;
     Array.prototype.forEach.call(document.querySelectorAll("#m-card .opt"), function(b){
       b.onclick = function(){ mock.ans[mock.i] = +b.getAttribute("data-i"); renderMockQ(); };
@@ -448,6 +489,7 @@
     Array.prototype.forEach.call(document.querySelectorAll("#m-grid button"), function(b){
       b.onclick = function(){ mock.i = +b.getAttribute("data-i"); renderMockQ(); window.scrollTo(0,0); };
     });
+    if (keep){ var k = document.querySelector(keep); if (k) k.focus({ preventScroll: true }); }
   }
 
   function toggleFlag(){ mock.flag[mock.i] = !mock.flag[mock.i]; renderMockQ(); }
@@ -458,19 +500,27 @@
     $("modal").classList.add("hidden");
     if (lastFocus && document.body.contains(lastFocus)) lastFocus.focus();
   }
-  function openModal(msg, nums, acts){
+  /* 確認のポップアップ（ブラウザ標準の confirm はプレビューなどで表示されないことがあるため、自前のものを使う） */
+  function askConfirm(msg, okLabel, onOk, danger){
+    openModal(msg, null, [
+      { label: "キャンセル" },
+      { label: okLabel, primary: !danger, danger: !!danger, fn: onOk }
+    ]);
+  }
+  function openModal(msg, nums, acts, numsKind){
     $("modal-msg").textContent = msg;
     $("modal-nums").innerHTML = "";
     (nums || []).forEach(function(i){
       var b = document.createElement("button");
       b.textContent = "問" + (i + 1);
+      if (numsKind) b.className = numsKind;
       b.onclick = function(){ closeModal(); mock.i = i; renderMockQ(); window.scrollTo(0,0); };
       $("modal-nums").appendChild(b);
     });
     $("modal-acts").innerHTML = "";
     acts.forEach(function(a){
       var b = document.createElement("button");
-      b.className = "btn" + (a.primary ? " primary" : "");
+      b.className = "btn" + (a.primary ? " primary" : "") + (a.danger ? " danger" : "");
       b.textContent = a.label;
       b.onclick = function(){ closeModal(); if (a.fn) a.fn(); };
       $("modal-acts").appendChild(b);
@@ -507,7 +557,7 @@
       openModal("こちらで提出してよろしいですか？\n元に戻ることはできません" + (flagged.length ? "\n\n見直しマークが付いている問があります。" : ""), flagged, [
         { label: "キャンセル" },
         { label: "提出する", primary: true, fn: function(){ submitMock(false); } }
-      ]);
+      ], "flagnum");
     }
   }
 
@@ -631,7 +681,14 @@
       if (!a || ev.defaultPrevented) return;
       var href = a.getAttribute("href");
       if (!/^[\w-]+\.html([?#].*)?$/.test(href)) return;
-      ev.preventDefault(); goPage(href);
+      ev.preventDefault();
+      if (a.target === "_blank"){   /* プレビューでは別タブを開けないので、内容をポップアップで見せる（演習の途中経過を消さない） */
+        var sp = new URLSearchParams(href.indexOf("?") >= 0 ? href.slice(href.indexOf("?")).split("#")[0] : "");
+        var info = R.reportInfo(sp.get("q"), sp.get("w"));
+        openModal((info ? info + "\n\n" : "") + "（プレビューのため、ここに表示しています。公開したサイトでは、お問い合わせページが新しいタブで開きます）", null, [{ label: "閉じる", primary: true }]);
+        return;
+      }
+      goPage(href);
     });
   }
 
@@ -684,7 +741,17 @@
     });
     $("gl-list").innerHTML = R.glossaryListHTML(glCat, $("gl-q").value);
     Array.prototype.forEach.call(document.querySelectorAll("#gl-list a[data-see]"), function(a){
-      a.onclick = function(ev){ ev.preventDefault(); glCat = "すべて"; $("gl-q").value = a.getAttribute("data-see"); renderGlossary(); window.scrollTo(0, 0); };
+      a.onclick = function(ev){
+        ev.preventDefault();
+        var t = a.getAttribute("data-see");
+        glCat = "すべて"; $("gl-q").value = ""; renderGlossary();
+        var el = document.getElementById("gl-" + encodeURIComponent(t));
+        if (el){
+          el.scrollIntoView({ block: "start" });
+          el.classList.remove("flash"); void el.offsetWidth; el.classList.add("flash");
+          el.setAttribute("tabindex", "-1"); el.focus({ preventScroll: true });
+        }
+      };
     });
   }
 
@@ -697,12 +764,16 @@
   bind("home-link", "onclick", function(ev){
     ev.preventDefault();
     if (PAGE.name !== "index"){ goPage("index.html"); return; }
-    if (!EX){ goTop(); return; }
+    /* どの画面からでも、資格を選ぶトップ画面に戻る */
+    var toTop = function(){
+      if (location.hash){ location.hash = ""; return; }   /* hashchange で route() → トップ */
+      goTop(); setNav("practice");
+    };
     if (mockRunning()){
-      if (!window.confirm("模擬試験を中断してトップへ戻りますか？\n（途中の解答は保存され、あとで再開できます）")) return;
-      saveMock(); mock.done = true; tab = "mock";
+      askConfirm("模擬試験を中断してトップへ戻りますか？\n（途中の解答は保存され、あとで再開できます）", "中断して戻る", function(){ saveMock(); mock.done = true; toTop(); });
+      return;
     }
-    goHome();
+    toTop();
   });
   Array.prototype.forEach.call(document.querySelectorAll("#view-top .exam"), function(b){
     b.onclick = function(){ location.hash = b.getAttribute("data-exam"); };
@@ -713,10 +784,29 @@
     Array.prototype.forEach.call(ds, function(d){ d.open = open; });
     this.textContent = open ? "すべての解答・解説を閉じる" : "すべての解答・解説を開く";
   });
+  /* 模擬試験の途中で、メニュー以外のリンク（フッターなど）を押したときも確認する */
+  document.addEventListener("click", function(ev){
+    if (!mockRunning()) return;
+    var a = ev.target.closest && ev.target.closest("a[href]");
+    if (!a || a.target === "_blank" || a.closest("#gnav") || a.id === "home-link") return;
+    var href = a.getAttribute("href");
+    if (!/^[\w-]+\.html([?#].*)?$/.test(href)) return;
+    ev.preventDefault(); ev.stopPropagation();
+    askConfirm("模擬試験を中断して移動しますか？\n（途中の解答は保存され、あとで再開できます）", "中断して移動", function(){
+      saveMock(); mock.done = true; goPage(href);
+    });
+  }, true);
   /* 模擬試験の途中でメニューを押したときは確認する */
   Array.prototype.forEach.call(document.querySelectorAll("#gnav a"), function(a){
     a.addEventListener("click", function(ev){
-      if (mockRunning() && !window.confirm("模擬試験を中断して移動しますか？\n（途中の解答は保存され、あとで再開できます）")) ev.preventDefault();
+      if (mockRunning()){
+        ev.preventDefault();
+        askConfirm("模擬試験を中断して移動しますか？\n（途中の解答は保存され、あとで再開できます）", "中断して移動", function(){
+          saveMock(); mock.done = true;
+          if (PAGE.name === "index" && a.getAttribute("data-nav") === "practice"){ if (location.hash) location.hash = ""; else route(); }
+          else goPage(a.getAttribute("href"));
+        });
+      }
       else if (PAGE.name === "index" && a.getAttribute("data-nav") === "practice"){ ev.preventDefault(); if (mockRunning()){ saveMock(); mock.done = true; } if (location.hash) location.hash = ""; else route(); }
     });
   });
@@ -724,6 +814,20 @@
     if (PAGE.name !== "index") return;
     if (mockRunning()){ saveMock(); mock.done = true; }
     route();
+  });
+  bind("q-report", "onclick", openReport);
+  bind("report-close", "onclick", closeReport);
+  if ($("report")) $("report").addEventListener("click", function(e){ if (e.target === this) closeReport(); });
+  document.addEventListener("keydown", function(e){
+    if (!$("report") || $("report").classList.contains("hidden")) return;
+    if (e.key === "Escape"){ closeReport(); e.preventDefault(); return; }
+    if (e.key === "Tab"){   /* 成績詳細の中だけでフォーカスを移動する */
+      var f = $("report").querySelectorAll("button, a[href], [tabindex='0']"); if (!f.length) return;
+      var a = f[0], z = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === a){ z.focus(); e.preventDefault(); }
+      else if (!e.shiftKey && document.activeElement === z){ a.focus(); e.preventDefault(); }
+      else if (!$("report").contains(document.activeElement)){ a.focus(); e.preventDefault(); }
+    }
   });
   bind("quit", "onclick", function(){ if (state.results.length) renderPracticeResult(); else goHome(); });
   bind("start-all", "onclick", function(){ startPractice(practiceTarget(null)); });
@@ -733,19 +837,25 @@
   bind("m-next", "onclick", function(){ mock.i++; renderMockQ(); window.scrollTo(0,0); });
   bind("m-submit", "onclick", confirmSubmit);
   bind("m-abort", "onclick", function(){
-    if (!window.confirm("模擬試験を中断しますか？\n途中の解答と残り時間は保存され、「模擬試験」タブからあとで再開できます。")) return;
-    saveMock(); mock.done = true; tab = "mock"; goHome();
+    askConfirm("模擬試験を中断しますか？\n途中の解答と残り時間は保存され、「模擬試験」タブからあとで再開できます。", "中断する", function(){
+      saveMock(); mock.done = true; tab = "mock"; goHome();
+    });
   });
   bind("reset", "onclick", function(){
-    if (!window.confirm("このブラウザに保存された、この資格の成績と模擬試験の記録（中断中の模擬試験を含む）をすべて消去しますか？")) return;
-    store = { q: {}, mock: [] }; save(); clearMock(); renderHome();
+    askConfirm("このブラウザに保存された、この資格の成績と模擬試験の記録（中断中の模擬試験を含む）をすべて消去しますか？\n元に戻すことはできません。", "消去する", function(){
+      store = { q: {}, mock: [] }; save(); clearMock(); renderHome();
+    }, true);
   });
+
+  /* ページを閉じる・隠すときにも残り時間を保存する */
+  window.addEventListener("pagehide", function(){ if (mock && !mock.done) saveMock(); });
+  document.addEventListener("visibilitychange", function(){ if (document.visibilityState === "hidden" && mock && !mock.done) saveMock(); });
 
   /* キーボード操作（入力欄やポップアップの表示中は無効） */
   document.addEventListener("keydown", function(e){
     if (e.ctrlKey || e.metaKey || e.altKey) return;
     var t = e.target.tagName;
-    if (t === "INPUT" || t === "TEXTAREA" || t === "SELECT" || !$("modal").classList.contains("hidden")) return;
+    if (t === "INPUT" || t === "TEXTAREA" || t === "SELECT" || !$("modal").classList.contains("hidden") || ($("report") && !$("report").classList.contains("hidden"))) return;
     var vq = $("view-quiz");
     var k = e.key, n = "1234".indexOf(k) >= 0 ? +k - 1 : "abcd".indexOf(k.toLowerCase());
     if (k.length !== 1) n = -1;

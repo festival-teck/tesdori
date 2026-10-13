@@ -6178,13 +6178,21 @@ window.GLOSSARY = [
 
 /* 更新履歴。新しいものを先頭に追加する。date は "YYYY-MM-DD"。
    一番上の日付が、全ページのフッターの「最終更新」に表示される。
-   ※ 公開する日に、一番上の日付を実際の公開日に書き換えること */
+   書き方の目安：追加したものは1行でざっくり、不具合の修正は「軽微な不具合を修正しました。」のように汎用的に書く */
 window.CHANGELOG = [
+  { date: "2026-10-13", items: [
+    "AL テストマネジメントの問題を追加し、模擬試験をセットA〜Dの4つにしました（全225問）。",
+    "用語集に AL テストマネジメントの用語を追加しました（全103語）。",
+    "問題演習で、正答率と成績の詳細を確認できるようにしました。",
+    "問題・解説の表現を見直しました。",
+    "一部表示色やフォントサイズを修正しました。",
+    "軽微な不具合を修正しました。"
+  ] },
   { date: "2026-09-28", items: [
     "サイトを公開しました。",
-    "Foundation Level（シラバス 2023V4.0.J02）：259問（4択 212問・計算 41問・記述 6問）、模擬試験セット A〜E",
-    "Advanced Level テストマネジメント（シラバス V3.0）：225問（4択 208問・計算 12問・記述 5問）、模擬試験セット A〜D",
-    "用語集：103語（AL テストマネジメントの用語 26語を含む）"
+    "Foundation Level（シラバス 2023V4.0.J02）：259問、模擬試験セットA〜E",
+    "Advanced Level テストマネジメント（シラバス V3.0）：143問、模擬試験セットA・B",
+    "用語集：77語"
   ] }
 ];
 
@@ -6352,11 +6360,12 @@ window.REPORT_PREFILL = "";
       return norm([g.term, g.yomi, g.en, g.def, g.note || ""].join(" ")).indexOf(kw) >= 0;
     });
     return hit.length ? hit.map(function(g){
-      return '<div class="gl-item" id="gl-' + encodeURIComponent(g.term) + '"><div><h2 class="gl-term">' + g.term + '</h2><span class="gl-en">' + g.en + '</span></div>' +
-        '<div style="margin-top:4px">' + g.def + '</div>' +
-        (g.note ? '<div class="gl-note"><b>現場では：</b>' + g.note + '</div>' : '') +
-        '<div class="gl-meta">分類：' + g.cat + '　／　シラバス：' + g.sec +
-        (g.see && g.see.length ? '　／　関連：' + g.see.map(function(t){ return '<a href="#gl-' + encodeURIComponent(t) + '" data-see="' + t + '">' + t + '</a>'; }).join("、") : '') + '</div></div>';
+      return '<div class="gl-item" id="gl-' + encodeURIComponent(g.term) + '">' +
+        '<div class="gl-head"><h2 class="gl-term">' + g.term + '</h2><span class="gl-en">' + g.en + '</span></div>' +
+        '<div class="gl-def">' + g.def + '</div>' +
+        (g.note ? '<div class="gl-note"><span class="gl-note-h">現場では</span>' + g.note + '</div>' : '') +
+        '<div class="gl-meta"><span class="gl-chip">' + g.cat + '</span><span class="gl-chip">シラバス ' + g.sec + '</span>' +
+        (g.see && g.see.length ? '<span class="gl-see">関連：' + g.see.map(function(t){ return '<a href="#gl-' + encodeURIComponent(t) + '" data-see="' + t + '">' + t + '</a>'; }).join("、") + '</span>' : '') + '</div></div>';
     }).join("") : '<div class="small muted">該当する用語がありません。</div>';
   };
 })();
